@@ -5,6 +5,11 @@ if exists("current_compiler")
 endif
 
 let current_compiler = "rubber"
-CompilerSet makeprg=rubber\ -d\ %
-"CompilerSet efm=%f:%l:\ [%t]%m,%f:%l:%m
 
+if exists('g:rubber_command')
+    execute 'CompilerSet makeprg='.escape(g:rubber_command, ' \|"').'\ %'
+else
+    CompilerSet makeprg=rubber\ -d\ %
+endif
+
+"CompilerSet efm=%f:%l:\ [%t]%m,%f:%l:%m
